@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Досье: Свиридова Анастасия Викторовна — Росфинмониторинг</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f4f7f9; 
+            color: #333; 
+        }
+
+        /* Хедер с фиксацией */
+        .navbar-custom { 
+            background-color: #0a1f33; 
+            height: 85px; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 30px; 
+            color: #fff; 
+            border-bottom: 4px solid #c5a059; 
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        
+        .logo-area { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        }
+        .emblem-img { 
+            height: 55px; 
+            width: auto; 
+        }
+        .logo-text h1 { 
+            margin: 0; 
+            font-size: 20px; 
+            font-weight: bold; 
+            letter-spacing: 0.5px; 
+            color: #ffffff;
+        }
+        .logo-text p { 
+            margin: 3px 0 0 0; 
+            font-size: 10px; 
+            color: #8fa2b5; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+        }
+        .access-status {
+            font-size: 12px; 
+            font-weight: bold; 
+            color: #8fa2b5;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* ГЛАВНЫЙ КОНТЕЙНЕР (С отступом 125px сверху под фиксированную шапку) */
+        .profile-card {
+            max-width: 750px;
+            margin: 125px auto 40px auto;
+            background: #ffffff;
+            padding: 40px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            box-sizing: border-box;
+        }
+
+        /* ВЕРХНИЙ БЛОК (ФОТО + ФИО) */
+        .header-block {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        /* КОНТЕЙНЕР ГЛАВНОГО ФОТО */
+        .main-photo {
+            width: 240px;
+            height: 300px;
+            border: 1px solid #cbd5e1;
+            object-fit: cover;
+            display: block;
+            background-color: #e5eef5; 
+        }
+
+        /* СТАТУС-БЕЙДЖ */
+        .status-badge {
+            display: inline-block;
+            background-color: #e6f4ea;
+            color: #137333;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 6px 16px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            border: 1px solid #ceead6;
+            width: fit-content;
+        }
+
+        /* ФИО И ДОЛЖНОСТЬ */
+        .employee-name {
+            font-size: 26px;
+            color: #0c2340;
+            margin: 0 0 8px 0;
+            font-weight: bold;
+        }
+        .employee-title {
+            font-size: 13px;
+            color: #0066cc;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+
+        /* ТАБЛИЦА С ХАРАКТЕРИСТИКАМИ */
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .meta-table td {
+            padding: 8px 0;
+            font-size: 13px;
+            vertical-align: top;
+        }
+        .meta-table td.label {
+            color: #64748b;
+            width: 140px;
+            font-weight: bold;
+        }
+        .meta-table td.value {
+            color: #1e293b;
+            font-weight: 500;
+        }
+        .meta-table td.value.id-highlight {
+            color: #dd2c00;
+            font-weight: bold;
+        }
+
+        /* ЗАГОЛОВКИ РАЗДЕЛОВ */
+        .section-headline {
+            font-size: 15px;
+            color: #0056b3;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 5px;
+        }
+
+        .section-text {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #334155;
+            text-align: justify;
+            margin: 0 0 20px 0;
+        }
+
+        .bullet-list {
+            margin: 0 0 25px 0;
+            padding-left: 20px;
+        }
+        .bullet-list li {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #334155;
+            margin-bottom: 10px;
+        }
+        .bullet-list strong {
+            color: #0056b3;
+        }
+
+        /* БЛОК МЕДИА (ЦИТАТА + ВТОРОЕ ФОТО) */
+        .media-container {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 20px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            margin-bottom: 25px;
+            align-items: start;
+            box-sizing: border-box;
+        }
+        .quote-text {
+            font-style: italic;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #475569;
+            margin: 0;
+        }
+        .quote-source {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #0056b3;
+            font-weight: bold;
+            margin-top: 12px;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+        .forum-photo {
+            width: 280px;
+            height: auto;
+            border: 1px solid #cbd5e1;
+            display: block;
+            background-color: #e5eef5; 
+        }
+
+        .awards-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 40px 0;
+        }
+        .awards-list li {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #334155;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: start;
+            gap: 8px;
+        }
+
+        .btn-back-main {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #0c2340;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        .btn-back-main:hover {
+            background-color: #0056b3;
+        }
+
+        /* ПОДВАЛ */
+        .footer-profile {
+            background-color: #0a1f33; 
+            color: #ffffff; 
+            padding: 30px 20px; 
+            border-top: 4px solid #c5a059; 
+            margin-top: 50px;
+        }
+        .footer-container {
+            max-width: 750px; 
+            margin: 0 auto; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .footer-logo-block {
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
+        }
+        .footer-logo-block img {
+            height: 45px; 
+            width: auto;
+        }
+        .footer-text-left {
+            text-align: left;
+        }
+        .footer-title-ru {
+            font-size: 13px; 
+            font-weight: bold; 
+            letter-spacing: 0.5px; 
+            color: #ffffff;
+        }
+        .footer-subtitle-ru {
+            font-size: 9px; 
+            color: #8fa2b5; 
+            text-transform: uppercase;
+        }
+        .footer-text-right {
+            text-align: right; 
+            font-size: 11px; 
+            color: #8fa2b5;
+        }
+
+        /* АДАПТИВНАЯ СЕТКА ДЛЯ СМАРТФОНОВ */
+        @media screen and (max-width: 768px) {
+            .navbar-custom {
+                height: auto !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                padding: 10px 15px !important;
+            }
+            .logo-area {
+                gap: 10px !important;
+            }
+            .emblem-img {
+                height: 45px !important;
+            }
+            .logo-text h1 {
+                font-size: 13px !important;
+            }
+            .logo-text p {
+                font-size: 8px !important;
+            }
+            .access-status {
+                display: none; /* Скрываем статус на мобилках для экономии места */
+            }
+
+            .profile-card {
+                padding: 20px 15px !important;
+                margin: 110px 10px 20px 10px !important;
+                width: auto !important;
+            }
+
+            .header-block {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+                text-align: center !important;
+            }
+            .main-photo {
+                margin: 0 auto !important;
+                max-width: 100% !important;
+                height: auto !important;
+                max-height: 280px !important;
+            }
+            .status-badge {
+                margin: 0 auto 15px auto !important;
+            }
+            .employee-name {
+                font-size: 22px !important;
+            }
+            .employee-title {
+                font-size: 11px !important;
+                padding-bottom: 12px !important;
+                margin-bottom: 15px !important;
+            }
+
+            .meta-table, .meta-table tbody, .meta-table tr, .meta-table td {
+                display: block !important;
+                width: 100% !important;
+            }
+            .meta-table td.label {
+                width: 100% !important;
+                padding-bottom: 2px !important;
+                padding-top: 10px !important;
+                text-align: left !important;
+            }
+            .meta-table td.value {
+                padding-top: 0 !important;
+                padding-bottom: 8px !important;
+                text-align: left !important;
+            }
+
+            .media-container {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+                padding: 15px !important;
+            }
+            .forum-photo {
+                width: 100% !important;
+                height: auto !important;
+                max-height: 220px !important;
+                object-fit: cover !important;
+                margin: 0 auto !important;
+            }
+
+            .section-text {
+                text-align: left !important;
+            }
+
+            .footer-container {
+                flex-direction: column !important;
+                text-align: center !important;
+                gap: 15px !important;
+            }
+            .footer-logo-block {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+            .footer-text-left {
+                text-align: center !important;
+            }
+            .footer-text-right {
+                text-align: center !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ВЕРХНЯЯ ВЕДОМСТВЕННАЯ ШАПКА -->
+    <nav class="navbar-custom">
+        <div class="logo-area">
+            <img src="emblem.png" class="emblem-img" alt="Герб">
+            <div class="logo-text">
+                <h1>РОСФИНМОНИТОРИНГ</h1>
+                <p>Служебная база верификации сотрудников</p>
+            </div>
+        </div>
+        <div class="access-status">Доступ: Служебный</div>
+    </nav>
+
+    <!-- СТРАНИЦА ИЗ БАЗЫ ДАННЫХ -->
+    <div class="profile-card">
+        
+        <!-- ВЕРХНИЙ БЛОК: ПОРТРЕТ И СЛУЖЕБНЫЕ ДАННЫЕ -->
+        <div class="header-block">
+            <img src="sviridova.png" class="main-photo" alt="Фото: Свиридова А. В.">
+            
+            <div>
+                <div class="status-badge">✓ Действующий сотрудник ведомства</div>
+                <h1 class="employee-name">Свиридова Анастасия Викторовна</h1>
+                <div class="employee-title">Главный специалист-эксперт</div>
+                
+                <table class="meta-table">
+                    <tr>
+                        <td class="label">ID Удостоверения:</td>
+                        <td class="value id-highlight">ФС-125077</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Подразделение:</td>
+                        <td class="value">Отдел по противодействию финансированию терроризма</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Специализация:</td>
+                        <td class="value">Антифрод-мониторинг, защита прав пострадавших лиц, блокировка нелегальных транзакций, coordination оперативного отдела</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- РАЗДЕЛ 1 -->
+        <div class="section-headline">Защита интересов граждан и борьба с киберпреступностью</div>
+        <p class="section-text">
+            Анастасия Викторовна Свиридова возглавляет ключевой сектор оперативного контроля, специализирующийся на расследовании преступлений в сфере социальной инженерии, фишинга и нелегального вывода активов. Обладая многолетним опытом аналитической и практической работы, она выстроила высокоэффективную систему межведомственного взаимодействия. Её основные задачи не только выявление теневых схем, но и оперативная помощь гражданам, ставшим жертвами мошеннических действий. 
+        </p>
+
+        <!-- РАЗДЕЛ 2 -->
+        <div class="section-headline">Образование и экспертная база</div>
+        <p class="section-text">
+            Окончила профильный факультет Института финансовой и экономической безопасности (ИФЭБ НИЯУ МИФИ) по специальности «Экономическая безопасность» (организация financial мониторинга). Регулярно проходит курсы повышения квалификации в области киберкриминалистики, анализа больших данных (Big Data) и правовых аспектов защиты персональной информации пострадавших субъектов финансового рынка.
+        </p>
+
+        <!-- РАЗДЕЛ 3 -->
+        <div class="section-headline">Специфика работы и ключевые направления</div>
+        <p class="section-text">
+            Основной приоритет в деятельности Анастасии Викторовны — минимизация ущерба, наносимого мошенниками физическим и юридическим лицам. Её рабочий график включает решение комплекса стратегических задач:
+        </p>
+        <ul class="bullet-list">
+            <li><strong>Прямая помощь жертвам мошенничества:</strong> Организация горячих линий и координация процессов по экстренному сопровождению граждан, пострадавших от действий телефонных аферистов и фейковых инвестиционных платформ.</li>
+            <li><strong>Оперативная блокировка транзакций:</strong> Обеспечение взаимодействия с Центральным Банком РФ и службами безопасности крупнейших кредитных организаций для заморозки подозрительных счетов и возврата украденных средств.</li>
+            <li><strong>Антифрод-аналитика:</strong> Внедрение передовых автоматизированных алгоритмов отслеживания аномальной активности, позволяющих пресекать переводы на «дропперские» карты до момента вывода денег преступниками.</li>
+            <li><strong>Просветительская деятельность:</strong> Разработка методических материалов и ведомственных рекомендаций по повышению финансовой грамотности населения с целью снижения уязвимости граждан перед психологическим давлением.</li>
+        </ul>
+
+        <!-- БЛОК С ЦИТАТОЙ И ФОТО -->
+        <div class="section-headline">Профессиональная позиция</div>
+        <div class="media-container">
+            <div class="quote-text">
+                «Главная сложность в нашей работе — это фактор времени. Когда человек находится под влиянием мошенников, счет идет на минуты. Наша первостепенная задача — не просто зафиксировать правонарушение, а выстроить цифровой щит, который успеет остановить транзакцию, сохранить сбережения граждан и вернуть им чувство безопасности.»
+                <span class="quote-source">из выступления на Всероссийском форуме по борьбе с киберпреступностью, 2026 г.</span>
+            </div>
+            <img src="sviridova_forum.png" class="forum-photo" alt="Свиридова А. В. на совещании">
+        </div>
+
+        <!-- РАЗДЕЛ НАГРАДЫ -->
+        <div class="section-headline">Ведомственные поощрения и заслуги</div>
+        <ul class="awards-list">
+            <li>🎖️ Медаль Росфинмониторинга «За заслуги перед ведомством» — за успешное проведение международной операции по ликвидации крупной сети фишинговых центров.</li>
+            <li>🎖️ Почетная грамота Директора Федеральной службы за вклад в создание единой системы защиты прав пострадавших участников финансовых рынков.</li>
+            <li>🎖️ Нагрудный знак «Отличник финансового мониторинга» за высокие показатели раскрываемости нелегальных схем вывода капитала за рубеж.</li>
+        </ul>
+
+        <!-- БЛОК КОНФИДЕНЦИАЛЬНОСТИ -->
+        <div style="background-color: #fff9e6; border-left: 4px solid #ffcc00; padding: 15px; margin: 30px 0; border-radius: 0 4px 4px 0;">
+            <p style="margin: 0; font-size: 12.5px; line-height: 1.5; color: #665200; font-style: italic;">
+                * Ряд материалов и деталей профессиональной деятельности сотрудников ведомства не подлежит разглашению ввиду соблюдения регламентов строгой конфиденциальности и защиты данных субъектов финансового мониторинга.
+            </p>
+        </div>
+
+        <!-- КНОПКА ВОЗВРАТА -->
+        <div style="margin-bottom: 10px;">
+            <a href="index.html" class="btn-back-main">← На главную страницу</a>
+        </div>
+
+    </div>
+
+    <!-- ВЕДОМСТВЕННЫЙ ПОДВАЛ -->
+    <footer class="footer-profile">
+        <div class="footer-container">
+            <div class="footer-logo-block">
+                <img src="emblem.png" alt="Герб">
+                <div class="footer-text-left">
+                    <div class="footer-title-ru">РОСФИНМОНИТОРИНГ</div>
+                    <div class="footer-subtitle-ru">Федеральная служба по финансовому мониторингу</div>
+                </div>
+            </div>
+            <div class="footer-text-right">
+                <div>Центральный аппарат Росфинмониторинга</div>
+                <div style="margin-top: 4px;">© 2001-2026 Все права защищены.</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
